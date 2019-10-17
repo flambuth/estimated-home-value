@@ -44,7 +44,7 @@ def clean_data(df):
 def get_zillow_data():
     query = '''
     SELECT 
-    p.id,p.bathroomcnt as bathrooms,p.bedroomcnt as bedrooms, p.calculatedfinishedsquarefeet as sq_ft, p.taxvaluedollarcnt, pred.transactiondate
+    p.id,p.bathroomcnt as bathrooms,p.bedroomcnt as bedrooms, p.calculatedfinishedsquarefeet as sq_ft, p.taxvaluedollarcnt
     FROM propertylandusetype pl
     JOIN
     properties_2017 p ON p.propertylandusetypeid = pl.propertylandusetypeid
@@ -56,7 +56,6 @@ def get_zillow_data():
     (pred.transactiondate LIKE '%%2017-05%%' OR pred.transactiondate LIKE '%%2017-06%%')
     AND
     p.calculatedfinishedsquarefeet IS NOT NULL
-    LIMIT 1000
     ;
     '''
 #Transactions have 2017/05 or 2017/06 in their transactiondate column
