@@ -60,7 +60,15 @@ def get_zillow_data():
 def wrangle_zillow():
     query = """
     SELECT  
-    poolcnt, fireplacecnt, fullbathcnt, garagecarcnt, regionidcounty, heatingorsystemtypeid, bedroomcnt, calculatedfinishedsquarefeet, taxvaluedollarcnt 
+    poolcnt, 
+    fireplacecnt, 
+    fullbathcnt, 
+    garagecarcnt, 
+    regionidcounty, 
+    heatingorsystemtypeid, 
+    bedroomcnt, 
+    calculatedfinishedsquarefeet, 
+    taxvaluedollarcnt 
     FROM properties_2017
     JOIN predictions_2017 USING(parcelid) 
     WHERE (predictions_2017.transactiondate BETWEEN '2017-05-01' AND '2017-06-01')
