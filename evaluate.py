@@ -24,7 +24,7 @@ def regression_errors(y, yhat):
     '''
     n = y.size
     residuals = yhat - y
-    ybar = y.mean()
+    ybar = np.array(y.mean())
 
     sse = (residuals**2).sum()
 

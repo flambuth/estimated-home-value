@@ -60,6 +60,5 @@ def get_zillow_data():
     '''
 #Transactions have 2017/05 or 2017/06 in their transactiondate column
 # sqft cant be null 
-
     df = pd.read_sql(query, get_db_url('zillow'))
     return df
