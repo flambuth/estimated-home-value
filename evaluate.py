@@ -4,6 +4,7 @@ from math import sqrt
 import matplotlib.pyplot as plt
 import seaborn as sns
 
+import numpy as np
 import pandas as pd
 from pydataset import data
 from statsmodels.formula.api import ols
@@ -30,13 +31,12 @@ def regression_errors(y, yhat):
 
     ess = ((yhat - ybar)**2).sum()
 
-    return {
-        'sse': sse,
-        'mse': sse / n,
-        'rmse': sqrt(sse / n),
-        'ess': ess,
-        'tss': ess + sse,
-    }
+    mse = sse / n,
+    rmse = sqrt(sse / n),
+    tss = ess + sse,
+    r_squared = ess/tss
+
+    return mse, rmse, r_squared
 
 
 def baseline_mean_errors(y):
