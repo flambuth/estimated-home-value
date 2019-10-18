@@ -13,7 +13,10 @@ def get_db_url(db):
 def get_zillow_bite():
     query = '''
     SELECT 
-    p.id,p.bathroomcnt as bathrooms,p.bedroomcnt as bedrooms, p.calculatedfinishedsquarefeet as sq_ft, p.taxvaluedollarcnt
+    p.id,p.bathroomcnt as bathrooms,
+    p.bedroomcnt as bedrooms, 
+    p.calculatedfinishedsquarefeet as sq_ft, 
+    p.taxvaluedollarcnt
     FROM propertylandusetype pl
     JOIN
     properties_2017 p ON p.propertylandusetypeid = pl.propertylandusetypeid
@@ -69,6 +72,8 @@ def wrangle_zillow():
     df['poolcnt'] = df['poolcnt'].fillna(0)
     df['garagecarcnt'] = df['garagecarcnt'].fillna(0)
     df['heatingorsystemtypeid'] = df['heatingorsystemtypeid'].fillna(0)
+    df['regionidcounty'] = df['regionidcounty'].apply(lambda x: 1 if x == 3101 else 0)
+    df = df.dropna()
     return df 
 
 
