@@ -37,11 +37,7 @@ def get_zillow_data():
     p.bedroomcnt as bedrooms, 
     p.calculatedfinishedsquarefeet as sq_ft, 
     p.taxvaluedollarcnt,
-    p.fips,
-    p.lotsizesquarefeet,
-    p.propertycountylandusecode,
-    p.regionidcity,
-    p.regionidzip
+    p.lotsizesquarefeet
     FROM propertylandusetype pl
     JOIN
     properties_2017 p ON p.propertylandusetypeid = pl.propertylandusetypeid
@@ -57,3 +53,33 @@ def get_zillow_data():
     '''
     df = pd.read_sql(query, get_db_url('zillow'))
     return df
+
+def wrangle_zillow():
+    query = """
+    SELECT  
+    poolcnt, fireplacecnt, fullbathcnt, garagecarcnt, regionidcounty, heatingorsystemtypeid, bedroomcnt, calculatedfinishedsquarefeet, taxvaluedollarcnt 
+    FROM properties_2017
+    JOIN predictions_2017 USING(parcelid) 
+    WHERE (predictions_2017.transactiondate BETWEEN '2017-05-01' AND '2017-06-01')
+    AND propertylandusetypeid = 261
+    ;
+    """
+    df = pd.read_sql(query, get_db_url('zillow'))
+    df['fireplacecnt'] = df['fireplacecnt'].fillna(0)
+    df['poolcnt'] = df['poolcnt'].fillna(0)
+    df['garagecarcnt'] = df['garagecarcnt'].fillna(0)
+    df['heatingorsystemtypeid'] = df['heatingorsystemtypeid'].fillna(0)
+    return df 
+
+
+#####NEGLIGABLE#####
+#fullbathcnt
+# data = wrangle_zillow()
+# data['fireplacecnt'] = data['fireplacecnt'].fillna(0)
+# data['poolcnt'] = data['poolcnt'].fillna(0)
+# data['regionidcounty'] = data['regionidcounty'].apply(lambda x: 1 if x == 3101 else 0)
+# data['garagecarcnt'] = data['garagecarcnt'].fillna(0)
+# #data['heatingorsystemtypeid'] = data['heatingorsystemtypeid'].fillna(0)
+# print(len(data))
+# data = data.dropna()
+# train, test = train_test_split(data, random_state = 123)
