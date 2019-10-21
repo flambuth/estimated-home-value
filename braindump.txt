@@ -7,3 +7,14 @@
 -Make a Presentation as soon as the MVP is finished
 
 -PLOT of geographic distribution of tax values
+
+Zach's Notes
+-----------------------------
+-Correlation heatmap is a little too busy. Might as well be a table.
+
+-INTRO and CONCLUSION could be the same slide: The Findings
+
+-Label the graphs and axis
+
+-Default plotting of the yhat vs yactual was too dense too see overlap
+	-change Alpha level so the denser parts will look darker

@@ -1,0 +1,16 @@
+Data columns (total 5 columns):
+id           16035 non-null int64
+bathrooms    16035 non-null float64
+bedrooms     16035 non-null float64
+sq_ft        16035 non-null float64
+tax_value    16033 non-null float64
+
+id = the id of the home. This is set at the explicit index in the notebook.
+
+bathrooms = the count of bathrooms per home
+
+bedromos = the count of bedrooms per home
+
+sq_ft = calculated square feet of the home, not inlcuding the lot area.
+
+tax_value = the target variable. This is the assessed value of the home according to tax officials.
