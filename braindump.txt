@@ -11,6 +11,10 @@
 
 -PLOT of geographic distribution of tax values
 
+-Make laundry list of what the stakeholders ask for.
+	-there are some 'unecessary' stuff to my process that is missing but could easily have been implemented
+	-namely the t-test for significance between a h0 and hA.
+
 Zach's Notes
 -----------------------------
 -Correlation heatmap is a little too busy. Might as well be a table.
@@ -27,3 +31,24 @@ Zach's Notes
 -Explain the displayed graphs. Talk them through.
 	-Talk them through.
 	-What do the sizes, shapes, colors and positons mean?
+
+
+Maggie's Notes
+------------------------------
+-Derived features that could cut out multi-collinearity
+	-sqft - bath_sqft, to get sqft that is not bathrooms. They ought to be Not Correlated.
+
+-When you PLOT, UNSCALE
+	-so that it makes sense. the -1/1 is only for the nerds, not the demo
+
+
+Ryan's Notes
+------------------------------
+-Avoid passive voice
+
+-Get rid of pro-nouns
+
+-Make confirmatory announcements. No uptone sounds.
+
+-Explain the charts. 2X
+	-nobody knows what chart types are supposed to say. 
