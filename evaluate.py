@@ -100,3 +100,10 @@ def baseline_mean_errors(y):
 #     print('----> Model significance metrics')
 #     regr = ols('tip ~ total_bill', tips).fit()
 #     pprint(model_significance(regr))
+
+def get_regression_errors(residuals_squared):
+    sse = sum(residuals_squared)
+    mse = sse/len(residuals_squared)
+    rmse = math.sqrt(mse)
+    r2 = ols_model.rsquared
+    return sse,mse,rmse,r2
