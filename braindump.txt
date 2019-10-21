@@ -1,10 +1,13 @@
 -Rehearse more, of course
 
 -Create more plots, even if they are not used in the process
+	-show them off so your methods have some reasoning shown
 
 -Model more than just the baseline
 
 -Make a Presentation as soon as the MVP is finished
+	-I forgot most of my train of thought when I thought I was "done". 
+	-Most of my insights felt nebulous when it came time to make the presentation slide, 2 days later
 
 -PLOT of geographic distribution of tax values
 
@@ -16,5 +19,11 @@ Zach's Notes
 
 -Label the graphs and axis
 
--Default plotting of the yhat vs yactual was too dense too see overlap
+-Default plotting of the y-hat vs y-actual was too dense too see overlap
 	-change Alpha level so the denser parts will look darker
+
+-When a number is used a lot (ex. r2, MSE), explain what it represents when that word is introduced
+
+-Explain the displayed graphs. Talk them through.
+	-Talk them through.
+	-What do the sizes, shapes, colors and positons mean?
