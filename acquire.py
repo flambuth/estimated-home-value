@@ -36,7 +36,8 @@ def get_zillow_bite():
 def get_zillow_data():
     query = '''
     SELECT 
-    p.id,p.bathroomcnt as bathrooms,
+    p.id,
+    p.bathroomcnt as bathrooms,
     p.bedroomcnt as bedrooms, 
     p.calculatedfinishedsquarefeet as sq_ft, 
     p.taxvaluedollarcnt,
@@ -45,11 +46,11 @@ def get_zillow_data():
     JOIN
     properties_2017 p ON p.propertylandusetypeid = pl.propertylandusetypeid
     JOIN
-    predictions_2017 p17 ON p17.id = p.id
+    predictions_2017 pred ON pred.id = p.id
     WHERE 
     p.propertylandusetypeid in (279,261) 
     AND 
-    (p17.transactiondate LIKE '%%2017-05%%' OR p17.transactiondate LIKE '%%2017-06%%')
+    (pred.transactiondate LIKE '%%2017-05%%' OR pred.transactiondate LIKE '%%2017-06%%')
     AND
     p.calculatedfinishedsquarefeet IS NOT NULL
     ;
@@ -84,15 +85,44 @@ def wrangle_zillow():
     df = df.dropna()
     return df 
 
+def get_tax_distro_6037():
+    query_6037 = """
+    SELECT taxamount/taxvaluedollarcnt as tax_rate_6037, fips
+    FROM properties_2017,
+    JOIN predictions_2017 USING (parcelid),
+    WHERE (propertylandusetypeid = 261) 
+        AND (transactiondate BETWEEN '2017-05-01' and '2017-06-30') 
+        AND fips = 6037,
+    ;
+    """
+    df = pd.read_sql(query_6037, get_db_url('zillow'))
+    df = df.dropna()
+    return df
 
-#####NEGLIGABLE#####
-#fullbathcnt
-# data = wrangle_zillow()
-# data['fireplacecnt'] = data['fireplacecnt'].fillna(0)
-# data['poolcnt'] = data['poolcnt'].fillna(0)
-# data['regionidcounty'] = data['regionidcounty'].apply(lambda x: 1 if x == 3101 else 0)
-# data['garagecarcnt'] = data['garagecarcnt'].fillna(0)
-# #data['heatingorsystemtypeid'] = data['heatingorsystemtypeid'].fillna(0)
-# print(len(data))
-# data = data.dropna()
-# train, test = train_test_split(data, random_state = 123)
+def get_tax_distro_6059():
+    query_6059 = """
+    SELECT taxamount/taxvaluedollarcnt as tax_rate_6059, fips
+    FROM properties_2017,
+    JOIN predictions_2017 using(parcelid),
+    WHERE (propertylandusetypeid = 261) 
+        AND (transactiondate BETWEEN '2017-05-01' and '2017-06-30') 
+        AND fips = 6059,
+    ;
+    """
+    df = pd.read_sql(query_6059, get_db_url('zillow'))
+    df = df.dropna()
+    return df
+
+def get_tax_distro_6111():
+    query_6111 = """
+    SELECT taxamount/taxvaluedollarcnt as tax_rate_6111, fips
+    FROM properties_2017,
+    JOIN predictions_2017 using(parcelid),
+    WHERE (propertylandusetypeid = 261) 
+        AND (transactiondate BETWEEN '2017-05-01' and '2017-06-30') 
+        AND fips = 6111,
+    ;
+    """
+    df = pd.read_sql(query_6111, get_db_url('zillow'))
+    df = df.dropna()
+    return df

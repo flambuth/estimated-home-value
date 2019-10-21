@@ -62,3 +62,4 @@ def get_zillow_data():
 # sqft cant be null 
     df = pd.read_sql(query, get_db_url('zillow'))
     return df
+
